@@ -8,17 +8,19 @@ public class Car {
     @Id
     private String _id;
     private String mark;
-    private String model;
-    private String color;
+    private String type;
+    private Integer price;
+    private CarDetails carDetails;
 
     public Car (){
     }
 
-    public Car(String _id, String mark, String model, String color) {
+    public Car(String _id, String mark, String type, Integer price, CarDetails carDetails) {
         this._id = _id;
         this.mark = mark;
-        this.model = model;
-        this.color = color;
+        this.type = type;
+        this.price = price;
+        this.carDetails = carDetails;
     }
 
     public String get_id() {
@@ -37,19 +39,27 @@ public class Car {
         this.mark = mark;
     }
 
-    public String getModel() {
-        return model;
+    public String getType() {
+        return type;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getColor() {
-        return color;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public CarDetails getCarDetails() {
+        return carDetails;
+    }
+
+    public void setCarDetails(CarDetails carDetails) {
+        this.carDetails = carDetails;
     }
 }

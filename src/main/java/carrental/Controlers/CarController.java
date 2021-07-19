@@ -11,8 +11,12 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/car")
 public class CarController {
-    @Autowired
     private CarService carService;
+
+    @Autowired
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping("/all")
     public List<Car> getAllCars(){
