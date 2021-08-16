@@ -8,6 +8,7 @@ public class Car {
     @Id
     private String _id;
     private String mark;
+    private String model;
     private String type;
     private Integer price;
     private CarDetails carDetails;
@@ -15,9 +16,10 @@ public class Car {
     public Car (){
     }
 
-    public Car(String _id, String mark, String type, Integer price, CarDetails carDetails) {
+    public Car(String _id, String mark, String model, String type, Integer price, CarDetails carDetails) {
         this._id = _id;
         this.mark = mark;
+        this.model = model;
         this.type = type;
         this.price = price;
         this.carDetails = carDetails;
@@ -37,6 +39,14 @@ public class Car {
 
     public void setMark(String mark) {
         this.mark = mark;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getType() {

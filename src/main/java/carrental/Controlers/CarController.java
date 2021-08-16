@@ -1,6 +1,7 @@
 package carrental.Controlers;
 
 import carrental.Models.Car;
+import carrental.Models.CarDetails;
 import carrental.Services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/car")
 public class CarController {
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
     public CarController(CarService carService) {
@@ -23,8 +24,25 @@ public class CarController {
         return carService.getAllCars().stream().collect(Collectors.toList());
     }
 
+    @GetMapping
+    public Car getCar(@RequestParam(value = "idCar") String idCar){
+        return carService.getCarByID(idCar);
+    }
+
+    @GetMapping("/details")
+    public CarDetails getCarDetails(@RequestParam(value = "idCar") String idCar){
+        return carService.getCarDetails(idCar);
+    }
+
+    @PostMapping("/details")
+    public CarDetails setCarDetails(@RequestParam(value = "idCar") String idCar, @RequestBody CarDetails carDetails){
+        return carService.setCarDetails(idCar, carDetails);
+    }
+
     @PostMapping
     public Car addCar(@RequestBody Car car){
         return carService.addCar(car);
     }
+
+
 }
