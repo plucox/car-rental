@@ -17,8 +17,8 @@ public class User {
     private String lastName;
     @Indexed(unique = true)
     private String email;
-    private String PhoneNum;
-    private Integer Age;
+    private String phoneNum;
+    private Integer age;
     @DBRef
     private List<Rent> rents;
 
@@ -30,8 +30,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        PhoneNum = phoneNum;
-        Age = age;
+        this.phoneNum = phoneNum;
+        this.age = age;
         this.rents = rents;
     }
 
@@ -68,19 +68,19 @@ public class User {
     }
 
     public String getPhoneNum() {
-        return PhoneNum;
+        return phoneNum;
     }
 
     public void setPhoneNum(String phoneNum) {
-        PhoneNum = phoneNum;
+        this.phoneNum = phoneNum;
     }
 
     public Integer getAge() {
-        return Age;
+        return age;
     }
 
     public void setAge(Integer age) {
-        Age = age;
+        this.age = age;
     }
 
     public List<Rent> getRents() {

@@ -24,7 +24,7 @@ public class CarController {
         return carService.getAllCars().stream().collect(Collectors.toList());
     }
 
-    @GetMapping
+    @GetMapping("/getByID")
     public Car getCar(@RequestParam(value = "idCar") String idCar){
         return carService.getCarByID(idCar);
     }
@@ -39,7 +39,7 @@ public class CarController {
         return carService.setCarDetails(idCar, carDetails);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Car addCar(@RequestBody Car car){
         return carService.addCar(car);
     }
