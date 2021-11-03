@@ -29,19 +29,26 @@ public class CarController {
         return carService.getCarByID(idCar);
     }
 
+    @PostMapping("/add")
+    public Car addCar(@RequestBody Car car){
+        return carService.addCar(car);
+    }
+
     @GetMapping("/details")
     public CarDetails getCarDetails(@RequestParam(value = "idCar") String idCar){
         return carService.getCarDetails(idCar);
     }
 
-    @PostMapping("/details")
-    public CarDetails setCarDetails(@RequestParam(value = "idCar") String idCar, @RequestBody CarDetails carDetails){
+    @PostMapping("/add-details")
+    public CarDetails setCarDetails(@RequestParam(value = "idCar") String idCar,
+                       @RequestBody CarDetails carDetails){
         return carService.setCarDetails(idCar, carDetails);
     }
 
-    @PostMapping("/add")
-    public Car addCar(@RequestBody Car car){
-        return carService.addCar(car);
+    @PatchMapping("/update-details")
+    public CarDetails updateCarDetails(@RequestParam(value = "idCar") String idCar,
+                                       @RequestBody CarDetails carDetails){
+        return carService.updateCarDetails(idCar, carDetails);
     }
 
 

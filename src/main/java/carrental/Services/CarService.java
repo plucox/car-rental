@@ -43,4 +43,34 @@ public class CarService {
         return car.getCarDetails();
     }
 
+    public CarDetails updateCarDetails(String idCar, CarDetails carDetails){
+        Car car = getCarByID(idCar);
+        CarDetails oldCarDetails = car.getCarDetails();
+
+        if(carDetails.getColor() != null)
+            oldCarDetails.setColor(carDetails.getColor());
+
+        if(carDetails.getDescription() != null)
+            oldCarDetails.setDescription(carDetails.getDescription());
+
+        if(carDetails.getEngine() != null)
+            oldCarDetails.setEngine(carDetails.getEngine());
+
+        if(carDetails.getSeats() != null)
+            oldCarDetails.setSeats(carDetails.getSeats());
+
+        if(carDetails.getFuelType() != null)
+            oldCarDetails.setFuelType(carDetails.getFuelType());
+
+        if(carDetails.getHorsePower() != null)
+            oldCarDetails.setHorsePower(carDetails.getHorsePower());
+
+        if(carDetails.getYearOfProduction() != null)
+            oldCarDetails.setYearOfProduction(carDetails.getYearOfProduction());
+
+        car.setCarDetails(oldCarDetails);
+        carRepository.save(car);
+        return car.getCarDetails();
+    }
+
 }
