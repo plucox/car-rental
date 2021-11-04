@@ -49,22 +49,16 @@ public class CarService {
 
         if(carDetails.getColor() != null)
             oldCarDetails.setColor(carDetails.getColor());
-
         if(carDetails.getDescription() != null)
             oldCarDetails.setDescription(carDetails.getDescription());
-
         if(carDetails.getEngine() != null)
             oldCarDetails.setEngine(carDetails.getEngine());
-
         if(carDetails.getSeats() != null)
             oldCarDetails.setSeats(carDetails.getSeats());
-
         if(carDetails.getFuelType() != null)
             oldCarDetails.setFuelType(carDetails.getFuelType());
-
         if(carDetails.getHorsePower() != null)
             oldCarDetails.setHorsePower(carDetails.getHorsePower());
-
         if(carDetails.getYearOfProduction() != null)
             oldCarDetails.setYearOfProduction(carDetails.getYearOfProduction());
 

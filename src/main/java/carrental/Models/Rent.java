@@ -1,7 +1,6 @@
 package carrental.Models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -10,17 +9,16 @@ import java.util.Date;
 public class Rent {
     @Id
     private String _id;
-    @DBRef
-    private Car car;
+    private String carId;
     private Date dateFrom;
     private Date dateTo;
 
     public Rent() {
     }
 
-    public Rent(String _id, Car car, Date dateFrom, Date dateTo) {
+    public Rent(String _id, String carId, Date dateFrom, Date dateTo) {
         this._id = _id;
-        this.car = car;
+        this.carId = carId;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
@@ -33,12 +31,12 @@ public class Rent {
         this._id = _id;
     }
 
-    public Car getCar() {
-        return car;
+    public String getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(String carId) {
+        this.carId = carId;
     }
 
     public Date getDateFrom() {
