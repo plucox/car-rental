@@ -87,10 +87,16 @@ public class User {
         return rents == null ? new ArrayList<>() : rents;
     }
 
-    public List<Rent> addRent(Rent rent){
+    public void addRent(Rent rent){
         if(rents == null)
             rents = new ArrayList<>();
         rents.add(rent);
+    }
+
+    public List<Rent> deleteRent(Rent rent){
+        if(rents == null)
+            rents = new ArrayList<>();
+        rents.remove(rent);
         return rents;
     }
 }

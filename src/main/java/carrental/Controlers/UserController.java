@@ -1,5 +1,6 @@
 package carrental.Controlers;
 
+import carrental.Models.Rent;
 import carrental.Models.User;
 import carrental.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,17 @@ public class UserController {
         return userService.addUser(user);
     }
 
+    @PatchMapping("/update")
+    public User updateUser(@RequestParam(value = "userId") String userId,
+                           @RequestBody User user){
+        return userService.updateUser(userId,user);
+    }
 
+    @PostMapping("/attach-rent")
+    public User attachRentToUser(@RequestParam(value = "userId") String userId,
+                                 @RequestBody Rent rent){
+        return userService.attachRentToUser(userId, rent);
+    }
 
 
 }
