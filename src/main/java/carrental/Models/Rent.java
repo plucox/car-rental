@@ -1,24 +1,24 @@
 package carrental.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
 
 @Document(collection = "rents")
 public class Rent {
     @Id
     private String _id;
-    private String carId;
-    private Date dateFrom;
-    private Date dateTo;
+    @DBRef
+    private Car car;
+    private String dateFrom;
+    private String dateTo;
 
     public Rent() {
     }
 
-    public Rent(String _id, String carId, Date dateFrom, Date dateTo) {
+    public Rent(String _id, Car car, String dateFrom, String dateTo) {
         this._id = _id;
-        this.carId = carId;
+        this.car = car;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
@@ -31,27 +31,27 @@ public class Rent {
         this._id = _id;
     }
 
-    public String getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(String carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
-    public Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
 }

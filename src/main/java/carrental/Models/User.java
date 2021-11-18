@@ -99,4 +99,8 @@ public class User {
         rents.remove(rent);
         return rents;
     }
+
+    public void setRents(List<Rent> rentsToSet){
+        this.rents = rentsToSet;
+    }
 }

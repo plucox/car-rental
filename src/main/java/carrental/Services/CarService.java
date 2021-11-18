@@ -23,6 +23,12 @@ public class CarService {
         return carRepository.save(car);
     }
 
+    public Car deleteCar(String idCar){
+        Car car = getCarByID(idCar);
+        carRepository.delete(car);
+        return car;
+    }
+
     public List<Car> getAllCars(){
         return carRepository.findAll();
     }

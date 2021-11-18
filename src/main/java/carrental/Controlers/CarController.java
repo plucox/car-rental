@@ -34,6 +34,11 @@ public class CarController {
         return carService.addCar(car);
     }
 
+    @DeleteMapping("/delete")
+    public Car deleteCar(@RequestParam(value = "idCar") String idCar){
+        return carService.deleteCar(idCar);
+    }
+
     @GetMapping("/details")
     public CarDetails getCarDetails(@RequestParam(value = "idCar") String idCar){
         return carService.getCarDetails(idCar);

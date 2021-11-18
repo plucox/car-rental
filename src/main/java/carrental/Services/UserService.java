@@ -51,12 +51,11 @@ public class UserService {
         userRepository.save(oldUser);
         return oldUser;
     }
-
-    public User attachRentToUser(String idUser, Rent rent){
-        User user = getUserById(idUser);
-        user.addRent(rent);
-        rentRepository.save(rent);
-        userRepository.save(user);
-        return getUserById(idUser);
+    //TODO delete user rents
+    public User deleteUser(String userId){
+        User user = getUserById(userId);
+        userRepository.delete(user);
+        return user;
     }
+
 }
