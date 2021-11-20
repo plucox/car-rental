@@ -51,9 +51,15 @@ public class UserService {
         userRepository.save(oldUser);
         return oldUser;
     }
-    //TODO delete user rents
+
     public User deleteUser(String userId){
         User user = getUserById(userId);
+        List<Rent> rents = user.getRents();
+
+        for (Rent rent : rents) {
+            rentRepository.delete(rent);
+        }
+
         userRepository.delete(user);
         return user;
     }
