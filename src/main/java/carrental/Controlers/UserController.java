@@ -48,6 +48,12 @@ public class UserController {
         return userService.updateUser(userId,user);
     }
 
+
+    @GetMapping("/getAllRents")
+    public List<Rent> getAllRents(){
+        return rentService.getAllRents();
+    }
+
     @GetMapping("/getAllUserRents")
     public List<Rent> getAllUserRents(@RequestParam(value = "userId") String userId){
         return rentService.getAllUserRents(userId);
@@ -60,8 +66,9 @@ public class UserController {
 
     @PatchMapping("/attach-rent")
     public Rent attachRentToUser(@RequestParam(value = "userId") String userId,
+                                 @RequestParam(value = "carId") String carId,
                                  @RequestBody Rent rent){
-        return rentService.addRent(userId, rent);
+        return rentService.addRent(userId, carId, rent);
     }
 
     @PatchMapping("/detach-rent")

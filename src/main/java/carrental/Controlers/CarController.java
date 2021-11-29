@@ -24,7 +24,7 @@ public class CarController {
         return carService.getAllCars().stream().collect(Collectors.toList());
     }
 
-    @GetMapping("/getByID")
+    @GetMapping("/getById")
     public Car getCar(@RequestParam(value = "idCar") String idCar){
         return carService.getCarByID(idCar);
     }

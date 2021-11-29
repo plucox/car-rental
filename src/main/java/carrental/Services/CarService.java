@@ -3,7 +3,11 @@ package carrental.Services;
 import carrental.Exception.ResourceNotFoundException;
 import carrental.Models.Car;
 import carrental.Models.CarDetails;
+import carrental.Models.Rent;
+import carrental.Models.User;
 import carrental.Repositories.CarRepository;
+import carrental.Repositories.RentRepository;
+import carrental.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +17,18 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final RentService rentService;
+    private final RentRepository rentRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public CarService(CarRepository carRepository) {
+    public CarService(CarRepository carRepository, RentService rentService, RentRepository rentRepository, UserRepository userRepository, UserService userService) {
         this.carRepository = carRepository;
+        this.rentService = rentService;
+        this.rentRepository = rentRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Car addCar(Car car){
@@ -25,6 +37,12 @@ public class CarService {
 
     public Car deleteCar(String idCar){
         Car car = getCarByID(idCar);
+        List<Rent> rents = rentService.getAllRents();
+        for (Rent rent : rents) {
+            if (rent.getCar().get_id().equals(idCar)) {
+                rentService.deleteRent(rent.getUser().get_id(), rent.get_id());
+            }
+        }
         carRepository.delete(car);
         return car;
     }

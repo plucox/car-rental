@@ -10,15 +10,18 @@ public class Rent {
     private String _id;
     @DBRef
     private Car car;
+    @DBRef
+    private User user;
     private String dateFrom;
     private String dateTo;
 
     public Rent() {
     }
 
-    public Rent(String _id, Car car, String dateFrom, String dateTo) {
+    public Rent(String _id, Car car, User user, String dateFrom, String dateTo) {
         this._id = _id;
         this.car = car;
+        this.user = user;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
@@ -37,6 +40,14 @@ public class Rent {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDateFrom() {
