@@ -11,7 +11,12 @@ import carrental.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CarService {
@@ -49,6 +54,33 @@ public class CarService {
 
     public List<Car> getAllCars(){
         return carRepository.findAll();
+    }
+
+    public List<Car> getAllAvailableCars(String dateFrom, String dateTo) throws ParseException {
+        List<Car> cars = getAllCars();
+        List<Rent> rents = rentService.getAllRents();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date dateFromToCheckFormated = format.parse(dateFrom);
+        Date dateToToCheckFormated = format.parse(dateTo);
+
+        for(Rent rent: rents){
+            Date dateFromFormated = format.parse(rent.getDateFrom());
+            Date dateToFormated = format.parse(rent.getDateTo());
+            
+                //First given date is between rent dates
+            if(dateFromToCheckFormated.compareTo(dateFromFormated) >= 0 && dateFromToCheckFormated.compareTo(dateToFormated) <= 0){
+                cars.removeIf(car -> car.get_id().equals(rent.getCar().get_id()));
+            }   //Second given date is between rent dates
+            else if (dateToToCheckFormated.compareTo(dateFromFormated) >= 0 && dateToToCheckFormated.compareTo(dateToFormated) <= 0){
+                cars.removeIf(car -> car.get_id().equals(rent.getCar().get_id()));
+            }   //Rent dates are between given dates
+            else if(dateFromToCheckFormated.compareTo(dateFromFormated) <= 0 && dateToToCheckFormated.compareTo(dateToFormated) >= 0){
+                cars.removeIf(car -> car.get_id().equals(rent.getCar().get_id()));
+            }
+        }
+
+        return cars;
     }
 
     public Car getCarByID(String idCar){

@@ -6,6 +6,7 @@ import carrental.Services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,12 @@ public class CarController {
     @GetMapping("/all")
     public List<Car> getAllCars(){
         return carService.getAllCars().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/all-available")
+    public List<Car> getAllAvailableCars(@RequestParam(value = "dateFrom") String dateFrom,
+                                         @RequestParam(value = "dateTo") String dateTo) throws ParseException {
+        return carService.getAllAvailableCars(dateFrom,dateTo);
     }
 
     @GetMapping("/getById")
