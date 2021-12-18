@@ -67,7 +67,7 @@ public class CarService {
         for(Rent rent: rents){
             Date dateFromFormated = format.parse(rent.getDateFrom());
             Date dateToFormated = format.parse(rent.getDateTo());
-            
+
                 //First given date is between rent dates
             if(dateFromToCheckFormated.compareTo(dateFromFormated) >= 0 && dateFromToCheckFormated.compareTo(dateToFormated) <= 0){
                 cars.removeIf(car -> car.get_id().equals(rent.getCar().get_id()));

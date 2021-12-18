@@ -1,5 +1,9 @@
 package carrental.Controlers;
 
+import carrental.Converter.RentConverter;
+import carrental.Converter.UserConverter;
+import carrental.DTO.RentDTO;
+import carrental.DTO.UserDTO;
 import carrental.Models.Rent;
 import carrental.Models.User;
 import carrental.Services.RentService;
@@ -8,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
@@ -23,58 +26,58 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<User> getAllUsers(){
-        return userService.getAllUsers().stream().collect(Collectors.toList());
+    public List<UserDTO> getAllUsers(){
+        return UserConverter.entityToDTO(userService.getAllUsers());
     }
 
     @GetMapping("/getByID")
-    public User getUserById(@RequestParam(value = "userId") String userId){
-        return userService.getUserById(userId);
+    public UserDTO getUserById(@RequestParam(value = "userId") String userId){
+        return UserConverter.entityToDTO(userService.getUserById(userId));
     }
 
     @PostMapping("/add")
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    public UserDTO addUser(@RequestBody User user){
+        return UserConverter.entityToDTO(userService.addUser(user));
     }
 
     @DeleteMapping("/delete-user")
-    public User deleteUSer(@RequestParam(value = "userId") String userId){
-        return userService.deleteUser(userId);
+    public UserDTO deleteUSer(@RequestParam(value = "userId") String userId){
+        return UserConverter.entityToDTO(userService.deleteUser(userId));
     }
 
     @PatchMapping("/update")
-    public User updateUser(@RequestParam(value = "userId") String userId,
+    public UserDTO updateUser(@RequestParam(value = "userId") String userId,
                            @RequestBody User user){
-        return userService.updateUser(userId,user);
+        return UserConverter.entityToDTO(userService.updateUser(userId,user));
     }
 
 
     @GetMapping("/getAllRents")
-    public List<Rent> getAllRents(){
-        return rentService.getAllRents();
+    public List<RentDTO> getAllRents(){
+        return RentConverter.entityToDTO(rentService.getAllRents());
     }
 
     @GetMapping("/getAllUserRents")
-    public List<Rent> getAllUserRents(@RequestParam(value = "userId") String userId){
-        return rentService.getAllUserRents(userId);
+    public List<RentDTO> getAllUserRents(@RequestParam(value = "userId") String userId){
+        return RentConverter.entityToDTO(rentService.getAllUserRents(userId));
     }
 
     @GetMapping("/getRentById")
-    public Rent getRentbyId(@RequestParam(value = "rentId") String rentId){
-        return rentService.getRentById(rentId);
+    public RentDTO getRentbyId(@RequestParam(value = "rentId") String rentId){
+        return RentConverter.entityToDTO(rentService.getRentById(rentId));
     }
 
     @PatchMapping("/attach-rent")
-    public Rent attachRentToUser(@RequestParam(value = "userId") String userId,
+    public RentDTO attachRentToUser(@RequestParam(value = "userId") String userId,
                                  @RequestParam(value = "carId") String carId,
                                  @RequestBody Rent rent){
-        return rentService.addRent(userId, carId, rent);
+        return RentConverter.entityToDTO(rentService.addRent(userId, carId, rent));
     }
 
     @PatchMapping("/detach-rent")
-    public User detachRentFromUser(@RequestParam(value = "userId") String userId,
+    public UserDTO detachRentFromUser(@RequestParam(value = "userId") String userId,
                                    @RequestParam(value = "rentId") String rentId){
-        return rentService.deleteRent(userId,rentId);
+        return UserConverter.entityToDTO(rentService.deleteRent(userId,rentId));
     }
 
 }

@@ -1,5 +1,9 @@
 package carrental.Controlers;
 
+import carrental.Converter.CarConverter;
+import carrental.Converter.CarDetailsConverter;
+import carrental.DTO.CarDTO;
+import carrental.DTO.CarDetailsDTO;
 import carrental.Models.Car;
 import carrental.Models.CarDetails;
 import carrental.Services.CarService;
@@ -21,46 +25,46 @@ public class CarController {
     }
 
     @GetMapping("/all")
-    public List<Car> getAllCars(){
-        return carService.getAllCars().stream().collect(Collectors.toList());
+    public List<CarDTO> getAllCars(){
+        return CarConverter.entityToDTO(carService.getAllCars());
     }
 
     @GetMapping("/all-available")
-    public List<Car> getAllAvailableCars(@RequestParam(value = "dateFrom") String dateFrom,
+    public List<CarDTO> getAllAvailableCars(@RequestParam(value = "dateFrom") String dateFrom,
                                          @RequestParam(value = "dateTo") String dateTo) throws ParseException {
-        return carService.getAllAvailableCars(dateFrom,dateTo);
+        return CarConverter.entityToDTO(carService.getAllAvailableCars(dateFrom,dateTo));
     }
 
     @GetMapping("/getById")
-    public Car getCar(@RequestParam(value = "idCar") String idCar){
-        return carService.getCarByID(idCar);
+    public CarDTO getCar(@RequestParam(value = "idCar") String idCar){
+        return CarConverter.entityToDTO(carService.getCarByID(idCar));
     }
 
     @PostMapping("/add")
-    public Car addCar(@RequestBody Car car){
-        return carService.addCar(car);
+    public CarDTO addCar(@RequestBody Car car){
+        return CarConverter.entityToDTO(carService.addCar(car));
     }
 
     @DeleteMapping("/delete")
-    public Car deleteCar(@RequestParam(value = "idCar") String idCar){
-        return carService.deleteCar(idCar);
+    public CarDTO deleteCar(@RequestParam(value = "idCar") String idCar){
+        return CarConverter.entityToDTO(carService.deleteCar(idCar));
     }
 
     @GetMapping("/details")
-    public CarDetails getCarDetails(@RequestParam(value = "idCar") String idCar){
-        return carService.getCarDetails(idCar);
+    public CarDetailsDTO getCarDetails(@RequestParam(value = "idCar") String idCar){
+        return CarDetailsConverter.entityToDTO(carService.getCarDetails(idCar));
     }
 
     @PostMapping("/add-details")
-    public CarDetails setCarDetails(@RequestParam(value = "idCar") String idCar,
+    public CarDetailsDTO setCarDetails(@RequestParam(value = "idCar") String idCar,
                        @RequestBody CarDetails carDetails){
-        return carService.setCarDetails(idCar, carDetails);
+        return CarDetailsConverter.entityToDTO(carService.setCarDetails(idCar, carDetails));
     }
 
     @PatchMapping("/update-details")
-    public CarDetails updateCarDetails(@RequestParam(value = "idCar") String idCar,
+    public CarDetailsDTO updateCarDetails(@RequestParam(value = "idCar") String idCar,
                                        @RequestBody CarDetails carDetails){
-        return carService.updateCarDetails(idCar, carDetails);
+        return CarDetailsConverter.entityToDTO(carService.updateCarDetails(idCar, carDetails));
     }
 
 
