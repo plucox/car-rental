@@ -34,23 +34,23 @@ public class UserService {
                 orElseThrow(() -> new ResourceNotFoundException("Not found given id user: "+idUser));
     }
 
-    public User updateUser(String userId, User user) {
-        User oldUser = getUserById(userId);
-
-        if(user.getAge()!=null)
-            oldUser.setAge(user.getAge());
-        if(user.getEmail()!=null)
-            oldUser.setEmail(user.getEmail());
-        if(user.getFirstName()!=null)
-            oldUser.setFirstName(user.getFirstName());
-        if(user.getLastName()!=null)
-            oldUser.setLastName(user.getLastName());
-        if(user.getPhoneNum()!=null)
-            oldUser.setPhoneNum(user.getPhoneNum());
-
-        userRepository.save(oldUser);
-        return oldUser;
-    }
+//    public User updateUser(String userId, User user) {
+//        User oldUser = getUserById(userId);
+//
+//        if(user.getAge()!=null)
+//            oldUser.setAge(user.getAge());
+//        if(user.getEmail()!=null)
+//            oldUser.setEmail(user.getEmail());
+//        if(user.getFirstName()!=null)
+//            oldUser.setFirstName(user.getFirstName());
+//        if(user.getLastName()!=null)
+//            oldUser.setLastName(user.getLastName());
+//        if(user.getPhoneNum()!=null)
+//            oldUser.setPhoneNum(user.getPhoneNum());
+//
+//        userRepository.save(oldUser);
+//        return oldUser;
+//    }
 
     public User deleteUser(String userId){
         User user = getUserById(userId);

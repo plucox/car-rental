@@ -13,11 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
     private String _id;
-    private String firstName;
-    private String lastName;
+    private String username;
     private String email;
-    private String phoneNum;
-    private Integer age;
     private List<Rent> rents;
 
     public void setRents(List<Rent> rents) {

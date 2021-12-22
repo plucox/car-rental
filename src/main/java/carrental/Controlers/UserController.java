@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -45,11 +46,11 @@ public class UserController {
         return UserConverter.entityToDTO(userService.deleteUser(userId));
     }
 
-    @PatchMapping("/update")
-    public UserDTO updateUser(@RequestParam(value = "userId") String userId,
-                           @RequestBody User user){
-        return UserConverter.entityToDTO(userService.updateUser(userId,user));
-    }
+//    @PatchMapping("/update")
+//    public UserDTO updateUser(@RequestParam(value = "userId") String userId,
+//                           @RequestBody User user){
+//        return UserConverter.entityToDTO(userService.updateUser(userId,user));
+//    }
 
 
     @GetMapping("/getAllRents")

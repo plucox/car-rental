@@ -12,11 +12,8 @@ public class UserConverter {
     public static UserDTO entityToDTO(User entity){
         UserDTO dto = new UserDTO();
         dto.set_id(entity.get_id());
-        dto.setFirstName(entity.getFirstName());
-        dto.setLastName(entity.getLastName());
+        dto.setUsername(entity.getUsername());
         dto.setEmail(entity.getEmail());
-        dto.setPhoneNum(entity.getPhoneNum());
-        dto.setAge(entity.getAge());
         dto.setRents(entity.getRents());
         return dto;
     }
