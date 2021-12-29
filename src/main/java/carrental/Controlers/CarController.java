@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
 @RequestMapping("/car")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class CarController {
     private final CarService carService;
 
