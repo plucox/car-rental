@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CarService {
@@ -57,9 +54,13 @@ public class CarService {
     }
 
     public List<Car> getAllAvailableCars(String dateFrom, String dateTo) throws ParseException {
+        if(dateFrom.compareTo(dateTo) >= 0)
+            return new ArrayList<>();
+
         List<Car> cars = getAllCars();
         List<Rent> rents = rentService.getAllRents();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 
         Date dateFromToCheckFormated = format.parse(dateFrom);
         Date dateToToCheckFormated = format.parse(dateTo);
